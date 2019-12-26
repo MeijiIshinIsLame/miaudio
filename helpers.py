@@ -8,3 +8,4 @@ def convert_to_mins(input_num):
 	return full_string
 
 #print(convert_to_mins(46578))
+

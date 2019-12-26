@@ -15,9 +15,9 @@ class AudioConverter:
 
 		return new_name
 
-def convert_all(path, new_path, ext):
+def convert_all(path, ext):
 	extensions = {".mp4", ".wmv", ".avi", ".webm", ".mkv"}
-	files_converted = {}
+	files_converted = []
 
 	for file in os.listdir(path):
 		for filetype in extensions:
@@ -27,5 +27,3 @@ def convert_all(path, new_path, ext):
 				files_converted.append(file)
 
 	return files_converted
-
-convert_all("C:\\Users\\thequ\\Desktop\\immersion\\New_vids", os.getcwd(), "mp3")
