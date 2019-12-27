@@ -13,6 +13,9 @@ class AudioConverter:
 		new_name = os.path.splitext(self.path)[0] + "." + self.ext
 		clip.audio.write_audiofile(new_name)
 
+		del clip.reader
+		del clip
+
 		return new_name
 
 def convert_all(path, ext):
