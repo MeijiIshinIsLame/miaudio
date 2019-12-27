@@ -20,8 +20,7 @@ class Splitter:
 
 	def split_to_chunks(self, new_name):
 
-		ext = os.path.splitext(self.path)[1] #extension (ex: .mp3)
-		ext = ext.split('.')[1]
+		ext = "mp3"
 
 		audio_file = AudioSegment.from_file(self.path, ext)
 
@@ -56,34 +55,27 @@ class Splitter:
 			beg_segment += self.chunklength #iterate
 
 def split_all(path, files_list, chunklength, new_path=os.getcwd()):
-
-	extensions = {".mp4", ".wmv", ".avi", ".webm", ".mkv"}
-
 	for file in files_list:
 		print("splitting: " + file)
 
-		for i in extensions:
-			if i in file:
-				name_without_ext = file.split(i)[0]
-				full_path = path + "\\" + file
-				file_to_split = Splitter(full_path, chunklength, new_path)
-				file_to_split.split_to_chunks(name_without_ext)
-				time.sleep(1)
+		full_path = path + "\\" + file
+		print("\n\n\nFULL PATH: ", full_path, "\n\n\n")
+		file_to_split = Splitter(full_path, chunklength, new_path)
+
+		name_without_ext = file.split(".mp3")[0]
+		file_to_split.split_to_chunks(name_without_ext)
 
 	#you need to find the extension somehow
 	delete_files(path, files_list)
 
 #because my own dumb ass this deletes the FILES IN THE LIST
 #it needs to delete the mp3 files, so make them mp3 boi
-def delete_files(path, files_list, ext):
+def delete_files(path, files_list):
 	for file in files_list:
-
-		#delete the mp3, not the video
-		full_path = path + "\\" + file
-		full_path = os.path.splitext(self.path)[0] + "." + ext
-
-		if os.path.exists(full_path):
-			os.remove(full_path)
-			print(full_path + " removed.")
+		if ".mp3" in file:
+			full_path = path + "\\" + file
+			if os.path.exists(full_path):
+				os.remove(full_path)
+				print(full_path + " removed.")
 
 

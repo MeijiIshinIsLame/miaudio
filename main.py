@@ -9,10 +9,14 @@ import helpers
 
 
 if __name__ == "__main__":
-	path = "C:\\Users\\thequ\\Desktop\\immersion\\New_vids"
-	new_path = "C:\\Users\\thequ\\Desktop\\immersion\\New_vids\\new"
-	ext = "mp3"
-	chunklength = int(5.0 * 10000)
+	path = input("Paste the directory with video files to convert: ")
+	new_path = input("Paste new directory for audio files: ")
+	chunklength = input("Type length of files (Format: 5.30 = 5 mins 30 sec): ")
+
+	if new_path is '':
+		new_path = path
+
+	chunklength = int(float(chunklength) * 100000)
 
 	print("\n\n")
 	print("--------------------------------------------")
@@ -20,7 +24,7 @@ if __name__ == "__main__":
 	print("--------------------------------------------")
 	print("\n\n")
 
-	files_list = ac_module.convert_all(path, ext)
+	files_list = ac_module.convert_all(path)
 
 	print(files_list)
-	splitter_module.split_all(path, files_list, chunklength, new_path=new_path)
+	splitter_module.split_all(path, files_list, chunklength, new_path)
