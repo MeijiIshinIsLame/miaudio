@@ -26,10 +26,8 @@ def convert_all(path):
 		for filetype in extensions:
 			if file.endswith(filetype):
 				mp3_file = file.split(filetype)[0] + ".mp3"
-				if (mp3_file) not in os.listdir(path):
-					video_to_convert = AudioConverter(path + "\\" + file)
-					video_to_convert.convert_to_audio()
-					files_converted.append(mp3_file)
+				video_to_convert = AudioConverter(path + "\\" + file)
+				video_to_convert.convert_to_audio()
+				files_converted.append(mp3_file)
 
-	#actually, return a list with the mp3 instead, not te original file. what the fk was i thinking tbh.
 	return files_converted

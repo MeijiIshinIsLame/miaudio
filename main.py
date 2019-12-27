@@ -26,5 +26,6 @@ if __name__ == "__main__":
 
 	files_list = ac_module.convert_all(path)
 
-	print(files_list)
 	splitter_module.split_all(path, files_list, chunklength, new_path)
+
+	print("\n\nFinished!\n\n")
