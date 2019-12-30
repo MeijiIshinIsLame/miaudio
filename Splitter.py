@@ -41,7 +41,8 @@ class Splitter:
 				full_segment = audio_file[remaining_audio:]
 
 				new_path = self.new_path + "\\" + new_name
-				new_path = new_path + "_" + str(helpers.convert_to_mins((beg_segment))) + "-" + str(helpers.convert_to_mins(len(audio_file))) + "." + ext
+				new_path = (new_path + "_" + str(helpers.convert_to_mins((beg_segment))) + "-" +
+							str(helpers.convert_to_mins(len(audio_file))) + ".mp3")
 
 				full_segment.export(new_path, format=ext)
 
@@ -50,7 +51,8 @@ class Splitter:
 				full_segment = audio_file[beg_segment:end_segment]
 
 				new_path = self.new_path + "\\" + new_name
-				new_path = new_path + "_" + str(helpers.convert_to_mins((beg_segment))) + "-" + str(helpers.convert_to_mins((end_segment))) + "." + ext
+				new_path = (new_path + "_" + str(helpers.convert_to_mins((beg_segment))) + "-" + 
+							str(helpers.convert_to_mins((end_segment))) + ".mp3")
 
 				full_segment.export(new_path, format=ext)
 
@@ -59,6 +61,7 @@ class Splitter:
 			pbar.update(beg_segment)
 
 		del audio_file
+		pbar.close()
 		gc.collect()
 
 def split_all(path, files_list, chunklength, new_path=os.getcwd()):

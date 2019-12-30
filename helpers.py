@@ -3,7 +3,7 @@ def convert_to_mins(input_num):
 	seconds = (input_num/1000) % 60
 	mins = (input_num/(1000*60)) % 60
 
-	full_string = "%d.%d" % (mins, seconds)
+	full_string = "%d.%02d" % (mins, seconds)
 
 	return full_string
 
