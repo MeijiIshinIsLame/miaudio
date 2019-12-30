@@ -1,6 +1,7 @@
 import os
 import helpers
 import time
+import gc
 from pydub import AudioSegment
 from tqdm import tqdm
 
@@ -23,10 +24,12 @@ class Splitter:
 
 		ext = "mp3"
 
-		audio_file = AudioSegment.from_file(self.path, ext)
+		audio_file = AudioSegment.from_mp3(self.path)
 
 		audio_remaining = True
 		beg_segment = 0
+
+		pbar = tqdm(total=len(audio_file))
 
 		while audio_remaining:
 			end_segment = beg_segment + self.chunklength
@@ -53,16 +56,25 @@ class Splitter:
 
 			beg_segment += self.chunklength #iterate
 
+			pbar.update(beg_segment)
+
+		del audio_file
+		gc.collect()
+
 def split_all(path, files_list, chunklength, new_path=os.getcwd()):
 	print("\n\nSplitting files\n\n")	
-	for file in tqdm(files_list):
-		#print("splitting: " + file)
+
+	i = 1
+	for file in files_list:
+		print("splitting: {}, file {} of {}".format(file, str(i), str(len(files_list))) )
 
 		full_path = path + "\\" + file
 		file_to_split = Splitter(full_path, chunklength, new_path)
 
 		name_without_ext = file.split(".mp3")[0]
 		file_to_split.split_to_chunks(name_without_ext)
+
+		i += 1
 
 	delete_files(path, files_list)
 
