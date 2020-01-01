@@ -12,16 +12,34 @@ import helpers
 if __name__ == "__main__":
 	print("\n\n\n")
 
-	path = input("Paste the directory with video files to convert: ")
+	getting_input = True
+
+	while getting_input:
+		path = input("Paste the directory with video files to convert: ")
+		if os.path.isdir(path):
+			break
+		else:
+			print("\nERROR: Specified directory does not exist, please try again.\n")
+
+
 	new_path = input("Paste new directory for audio files: ")
-	chunklength = input("Type length of files (Format: 5.30 = 5 mins 30 sec): ")
+	
 
-	if new_path is '':
+	while getting_input:
+		chunklength = input("Type length of files (Format: 5:30 = 5 mins 30 sec): ")
+		chunklength = helpers.convert_to_milliseconds(chunklength)
+
+		if chunklength == -1:
+			print("Length incorrect, please try again.")
+		else:
+			break
+
+
+	if new_path == '':
 		new_path = path
+	else:
+		helpers.create_directory_if_none(new_path)
 
-	chunklength = int((float(chunklength) * 1000) * 60)
-
-	print("\n\n\n" + str(chunklength) + " THIS IS THE CHUNK LENGATH WHY THO")
 
 	print("\n\n")
 	print("--------------------------------------------")

@@ -12,17 +12,16 @@ class Splitter:
 		self.new_path = new_path
 		self.chunklength = chunklength
 
-	'''
-	takes an original file, and splits it into chunk size in new path.
-
-	new_name - a new filename without extension or path
-
-	ex: "users\\file.mp3" should be inserted as "file"
-	'''
-
 	def split_to_chunks(self, new_name):
 
-		ext = "mp3"
+		'''
+		takes an original file, and splits it into chunk size in new path.
+
+		Parameters:
+	    new_name (str): a new filename without extension or path
+
+		ex: "users\\file.mp3" should be inserted as "file"
+		'''
 
 		audio_file = AudioSegment.from_mp3(self.path)
 
@@ -44,7 +43,7 @@ class Splitter:
 				new_path = (new_path + "_" + str(helpers.convert_to_mins((beg_segment))) + "-" +
 							str(helpers.convert_to_mins(len(audio_file))) + ".mp3")
 
-				full_segment.export(new_path, format=ext)
+				full_segment.export(new_path, format="mp3")
 
 				audio_remaining = False #break
 			else:
@@ -54,21 +53,42 @@ class Splitter:
 				new_path = (new_path + "_" + str(helpers.convert_to_mins((beg_segment))) + "-" + 
 							str(helpers.convert_to_mins((end_segment))) + ".mp3")
 
-				full_segment.export(new_path, format=ext)
+				full_segment.export(new_path, format="mp3")
 
+			start = beg_segment
 			beg_segment += self.chunklength #iterate
 
-			pbar.update(beg_segment)
+			#using this instead of regular update to make it look nicer
+			helpers.incriment_pbar(start, beg_segment, pbar)
 
 		del audio_file
 		pbar.close()
 		gc.collect()
 
-def split_all(path, files_list, chunklength, new_path=os.getcwd()):
-	print("\n\nSplitting files\n\n")	
+def split_all(path, files_list, chunklength, new_path):
 
+	'''
+	uses split_to_chunks() to loop over all files in a list of files, and split them.
+	Deletes all files in files_list when finished.
+
+	Parameters:
+
+    path (str): a new filename without extension or path
+
+    files_list (list of str): list of files converted (ex: filename.mp3) 
+    						  passed from AudioConverter.convert_all()
+
+    chunklength (int): length per file (in milliseconds)
+    
+    new_path (str): Output directory of split files.
+
+	'''
+
+	print("\n\nSplitting files\n\n")	
 	i = 1
+
 	for file in files_list:
+
 		print("splitting: {}, file {} of {}".format(file, str(i), str(len(files_list))) )
 
 		full_path = path + "\\" + file
@@ -82,6 +102,15 @@ def split_all(path, files_list, chunklength, new_path=os.getcwd()):
 	delete_files(path, files_list)
 
 def delete_files(path, files_list):
+
+	'''
+	Deletes all files from files_list in a given path (directory)
+
+	Parameters:
+    path (str): directory of files to be deleted
+    files_list: list of files to delete within given directory.
+
+	'''
 	for file in files_list:
 		full_path = path + "\\" + file
 		if os.path.exists(full_path):
