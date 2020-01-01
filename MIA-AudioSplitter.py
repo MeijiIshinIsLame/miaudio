@@ -1,8 +1,5 @@
 import os
 import time
-import gc
-from pydub import AudioSegment
-import moviepy.editor as mp
 
 import AudioConverter as ac_module
 import Splitter as splitter_module
@@ -23,7 +20,7 @@ if __name__ == "__main__":
 
 
 	new_path = input("Paste new directory for audio files: ")
-	
+
 
 	while getting_input:
 		chunklength = input("Type length of files (Format: 5:30 = 5 mins 30 sec): ")
