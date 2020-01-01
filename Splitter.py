@@ -18,7 +18,7 @@ class Splitter:
 		takes an original file, and splits it into chunk size in new path.
 
 		Parameters:
-	    new_name (str): a new filename without extension or path
+		new_name (str): a new filename without extension or path
 
 		ex: "users\\file.mp3" should be inserted as "file"
 		'''
@@ -73,14 +73,14 @@ def split_all(path, files_list, chunklength, new_path):
 
 	Parameters:
 
-    path (str): a new filename without extension or path
+	path (str): a new filename without extension or path
 
-    files_list (list of str): list of files converted (ex: filename.mp3) 
-    						  passed from AudioConverter.convert_all()
+	files_list (list of str): list of files converted (ex: filename.mp3) 
+								passed from AudioConverter.convert_all()
 
-    chunklength (int): length per file (in milliseconds)
-    
-    new_path (str): Output directory of split files.
+	chunklength (int): length per file (in milliseconds)
+
+	new_path (str): Output directory of split files.
 
 	'''
 

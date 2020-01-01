@@ -13,10 +13,10 @@ class AudioConverter:
 		ex: users\\directory\\poop.mkv
 
 		Parameters:
-	    None
+		None
 
-	    Returns:
-	    list of files converted to mp3: ex - ['file1.mp3', 'file2.mp3']
+		Returns:
+		list of files converted to mp3: ex - ['file1.mp3', 'file2.mp3']
 
 		'''
 		clip = mp.VideoFileClip(self.path)
