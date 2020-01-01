@@ -35,10 +35,10 @@ def convert_all(path):
 	Converts all video files in given directory to mp3.
 
 	Parameters:
-    path (str): directory of files to be converted
+	path (str): directory of files to be converted
 
-    Returns:
-    list of files converted to mp3: ex - ['file1.mp3', 'file2.mp3']
+   	Returns:
+	list of files converted to mp3: ex - ['file1.mp3', 'file2.mp3']
 
 	'''
 	extensions = {".mp4", ".wmv", ".avi", ".webm", ".mkv", ".flv"}
