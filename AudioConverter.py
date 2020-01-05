@@ -46,11 +46,17 @@ def convert_all(path):
 
 	for file in os.listdir(path):
 		for filetype in extensions:
+
 			if file.endswith(filetype):
 				mp3_file = file.split(filetype)[0] + ".mp3"
-				print("Converting: ", mp3_file)
-				video_to_convert = AudioConverter(path + "\\" + file)
-				video_to_convert.convert_to_audio()
+
+				if os.path.exists(path + "\\" + mp3_file):
+					print(mp3_file, "already exists. Skipping...")
+				else:
+					print("Converting: ", file)
+					video_to_convert = AudioConverter(path + "\\" + file)
+					video_to_convert.convert_to_audio()
+
 				files_converted.append(mp3_file)
 
 	return files_converted

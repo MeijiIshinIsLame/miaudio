@@ -19,7 +19,7 @@ if __name__ == "__main__":
 			print("\nERROR: Specified directory does not exist, please try again.\n")
 
 
-	new_path = input("Paste new directory for audio files: ")
+	new_path = input("Paste new directory for audio files (leave blank if none): ")
 
 
 	while getting_input:
