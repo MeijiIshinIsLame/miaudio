@@ -1,4 +1,4 @@
 [parameters]
 input_path = C:\Users\example\directory
-output_path = C:\Users\C:\Users\example\directory\splitfiles
+output_path = C:\Users\example\directory\splitfiles
 split_length = 5:00
