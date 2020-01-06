@@ -7,9 +7,9 @@ from tqdm import tqdm
 
 class Splitter:
 
-	def __init__(self, path, chunklength, new_path=os.getcwd()):
+	def __init__(self, path, chunklength, output_directory):
 		self.path = path
-		self.new_path = new_path
+		self.output_directory = output_directory
 		self.chunklength = chunklength
 
 	def split_to_chunks(self, new_name):
@@ -39,7 +39,7 @@ class Splitter:
 				remaining_audio = remaining_audio * -1
 				full_segment = audio_file[remaining_audio:]
 
-				new_path = self.new_path + "\\" + new_name
+				new_path = self.output_directory + "\\" + new_name
 				new_path = (new_path + "_" + str(helpers.convert_to_mins((beg_segment))) + "-" +
 							str(helpers.convert_to_mins(len(audio_file))) + ".mp3")
 
@@ -49,7 +49,7 @@ class Splitter:
 			else:
 				full_segment = audio_file[beg_segment:end_segment]
 
-				new_path = self.new_path + "\\" + new_name
+				new_path = self.output_directory + "\\" + new_name
 				new_path = (new_path + "_" + str(helpers.convert_to_mins((beg_segment))) + "-" + 
 							str(helpers.convert_to_mins((end_segment))) + ".mp3")
 
@@ -65,7 +65,7 @@ class Splitter:
 		pbar.close()
 		gc.collect()
 
-def split_all(path, files_list, chunklength, new_path):
+def split_all(input_directory, files_list, chunklength, output_directory):
 
 	'''
 	uses split_to_chunks() to loop over all files in a list of files, and split them.
@@ -73,14 +73,14 @@ def split_all(path, files_list, chunklength, new_path):
 
 	Parameters:
 
-	path (str): a new filename without extension or path
+	input_directory (str): path to input directory
 
 	files_list (list of str): list of files converted (ex: filename.mp3) 
 								passed from AudioConverter.convert_all()
 
 	chunklength (int): length per file (in milliseconds)
 
-	new_path (str): Output directory of split files.
+	output_directory (str): Output directory of split files.
 
 	'''
 
@@ -91,15 +91,15 @@ def split_all(path, files_list, chunklength, new_path):
 
 		print("splitting: {}, file {} of {}".format(file, str(i), str(len(files_list))) )
 
-		full_path = path + "\\" + file
-		file_to_split = Splitter(full_path, chunklength, new_path)
+		full_path = input_directory + "\\" + file
+		file_to_split = Splitter(full_path, chunklength, output_directory)
 
 		name_without_ext = file.split(".mp3")[0]
 		file_to_split.split_to_chunks(name_without_ext)
 
 		i += 1
 
-	delete_files(path, files_list)
+	delete_files(input_directory, files_list)
 
 def delete_files(path, files_list):
 
