@@ -1,4 +1,4 @@
-# subs2srs-splitter-replacement
+# miaudio
 Takes a folder of video files, converts them to audio, and splits them into segments determined by the user.
 
 #### Installation
