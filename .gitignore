@@ -6,4 +6,6 @@
 *.mp3
 *.wav
 
+MIA-AudioSplitter-GUI.py
+
 __pycache__/

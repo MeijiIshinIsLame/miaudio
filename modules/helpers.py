@@ -33,4 +33,4 @@ def create_directory_if_none(path):
 		print("\n\nOutput Directory:", path)
 	else:
 		os.makedirs(path)
-		print("\n\nDirectory created: ", path)
+		print("\n\nDirectory created: ", os.path.abspath(path))

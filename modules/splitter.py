@@ -1,7 +1,7 @@
 import os
-import helpers
 import time
 import gc
+import modules.helpers as helpers
 from pydub import AudioSegment
 from tqdm import tqdm
 
