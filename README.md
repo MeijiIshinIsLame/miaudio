@@ -7,7 +7,7 @@ Takes a folder of video files, converts them to audio, and splits them into segm
 2. Unzip file
 3. in command line:
 ```
-cd [location of folder]
+cd C:\Users\path\to\miaudio
 pip install -r requirements.txt
 python miaudio.py
 ```
