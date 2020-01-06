@@ -28,3 +28,9 @@ This module requires 64 BIT Python 3.6.x or above!
 I found out that the pydub module works with audio in RAM. If you are using a modern computer and a 64-bit version of python this should be fine, but if you are working with videos more than 30 minutes YOU WILL LIKELY RUN OUT OF MEMORY on 32-BIT VERSIONS OF PYTHON!
 
 ##### requirements
+```
+moviepy
+pydub
+tqdm
+configparser
+```
