@@ -15,7 +15,7 @@ python miaudio.py
 or just clone this repo
 ```
 git clone https://github.com/MeijiIshinIsLame/subs2srs-splitter-replacement
-cd subs2srs-splitter-replacement
+cd miaudio
 pip install -r requirements.txt
 python miaudio.py
 ```
