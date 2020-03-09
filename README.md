@@ -9,7 +9,6 @@ Takes a folder of video files, converts them to audio, and splits them into segm
 ```
 cd C:\Users\path\to\miaudio
 pip install -r requirements.txt
-python miaudio.py
 ```
 
 or just clone this repo
@@ -17,7 +16,6 @@ or just clone this repo
 git clone https://github.com/MeijiIshinIsLame/subs2srs-splitter-replacement
 cd miaudio
 pip install -r requirements.txt
-python miaudio.py
 ```
 ##### How to Use
 
