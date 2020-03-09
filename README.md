@@ -3,7 +3,7 @@ Takes a folder of video files, converts them to audio, and splits them into segm
 
 #### Installation
 
-1. <a href="https://drive.google.com/file/d/1GQde0-h44bwVwa9c16wpJp1STZ1el_CM/view?usp=sharing">Download here!</a>
+1. <a href="https://drive.google.com/file/d/1xmusgLdL-jmvcXzdUYD-P47EgujrKOS2/view?usp=sharing">Download here!</a>
 2. Unzip file
 3. in command line:
 ```
